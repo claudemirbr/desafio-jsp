@@ -19,11 +19,11 @@ public class ContatoController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String acao = req.getParameter("acao");
-		
-		if (acao.equals("lis")) {
-			Contatos contatos = new Contatos();
+
+		Contato contato = new Contato();
+		Contatos contatos = new Contatos();
+		String acao = "";
+		if (req.getParameter("acao") == null ) {
 			try {
 				List<Contato> lista = contatos.getContatos();
 				req.setAttribute("lista", lista);
@@ -33,27 +33,53 @@ public class ContatoController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			acao = req.getParameter("acao");
+
+			if (acao.equals("novo")) {
+				contato.setId(Long.valueOf("0"));
+				contato.setNome("");
+				contato.setEmail("");
+				req.setAttribute("contato", contato);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/contato.jsp");
+				dispatcher.forward(req, resp);
+			} else if (acao.equals("editar")) {
+				contato.setId(Long.valueOf(req.getParameter("id")));
+				contato = contatos.getContato(contato);
+				req.setAttribute("contato", contato);
+				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/contato.jsp");
+				dispatcher.forward(req, resp);
+			} else if (acao.equals("excluir")) {
+				if (req.getParameter("id") != null) {
+					contato.setId(Long.valueOf(req.getParameter("id")));
+				}
+				contatos.deletaContato(contato);
+				resp.sendRedirect("contatocontroller.do");
+			}
 		}
-		
-		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		String id = req.getParameter("id");
 		String nome = req.getParameter("nome");
 		String email = req.getParameter("email");
-		
-		Contato contato = new Contato();
-		
-		contato.setNome(nome);
-		contato.setEmail(email);
-		
-		Contatos contatos = new Contatos();
-		contatos.salvaContato(contato);
-		
-		resp.getWriter().print("Sucesso!");
-		
-	}
 
+		Contato contato = new Contato();
+		Contatos contatos = new Contatos();
+
+		if (id == null && id.equals(0)) {
+			contato.setNome(nome);
+			contato.setEmail(email);
+			contatos.salvaContato(contato);
+		} else {
+			contato.setId(Long.valueOf(id));
+			contato.setNome(nome);
+			contato.setEmail(email);
+			contatos.editaContato(contato);
+		}
+		resp.sendRedirect("contatocontroller.do");
+	}
 }
