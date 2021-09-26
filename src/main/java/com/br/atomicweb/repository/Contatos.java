@@ -10,6 +10,7 @@ import com.br.atomicweb.model.Contato;
 
 //https://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
 //https://docs.oracle.com/javaee/6/tutorial/doc/bnbrg.html
+//https://gist.github.com/mlecoutre/4088178
 
 public class Contatos {
 	private static final String PERSISTENCE_UNIT_NAME = "default";
