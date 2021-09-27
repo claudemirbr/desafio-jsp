@@ -27,7 +27,7 @@ public class ContatoController extends HttpServlet {
 			try {
 				List<Contato> lista = contatos.getContatos();
 				req.setAttribute("lista", lista);
-				RequestDispatcher dispacher = req.getRequestDispatcher("WEB-INF/lista.jsp");
+				RequestDispatcher dispacher = req.getRequestDispatcher("WEB-INF/contatolist.jsp");
 				dispacher.forward(req, resp);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

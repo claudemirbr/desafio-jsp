@@ -1,4 +1,4 @@
-<%@page import="com.br.atomicweb.model.Contato"%>
+<%@page import="com.br.atomicweb.model.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,37 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Contatos</title>
+<title>Usuário</title>
 <script type="text/javascript">
 	function confirmaExclusao(id) {
 		if (window.confirm("Tem certeza que deseja excluir?")) {
-			location.href = "contatocontroller.do?acao=excluir&id=" + id;
+			location.href = "usuario.do?acao=excluir&codigo=" + id;
 		}
 	}
 </script>
 </head>
 <body>
 	<%
-		List<Contato> lista = (List<Contato>) request.getAttribute("lista");
+		List<Usuario> lista = (List<Usuario>) request.getAttribute("lista");
 	%>
-	<a href="contatocontroller.do?acao=novo">Novo</a>
+	<a href="usuario.do?acao=novo">Novo</a>
 	<table border="1">
 
 		<tr>
 			<th>Código</th>
 			<th>Nome</th>
-			<th>Email</th>
+			<th>Login</th>
 			<th>Ação</th>
 		</tr>
 		<%
-			for (Contato c : lista) {
+			for (Usuario u : lista) {
 		%>
 		<tr>
-			<td><%=c.getId()%></td>
-			<td><%=c.getNome()%></td>
-			<td><%=c.getEmail()%></td>
-			<td> <a href="contatocontroller.do?acao=editar&id=<%=c.getId()%>">Editar</a> |
-				<a href="javascript:confirmaExclusao(<%=c.getId()%>)">Excluir</a>
+			<td><%=u.getCodigo()%></td>
+			<td><%=u.getNome()%></td>
+			<td><%=u.getLogin()%></td>
+			<td><a href="usuario.do?acao=editar&codigo=<%=u.getCodigo()%>">Editar</a>
+				| <a href="javascript:confirmaExclusao(<%=u.getCodigo()%>)">Excluir</a>
 			</td>
 		</tr>
 
