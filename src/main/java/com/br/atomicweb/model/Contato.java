@@ -11,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Contato {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	private Long id;
 	private String nome;
