@@ -14,7 +14,7 @@ import com.br.atomicweb.model.Contato;
 import com.br.atomicweb.repository.Contatos;
 
 @SuppressWarnings("serial")
-@WebServlet("/contatocontroller.do")
+@WebServlet("/contato.do")
 public class ContatoController extends HttpServlet {
 	
 	@Override
@@ -54,7 +54,7 @@ public class ContatoController extends HttpServlet {
 					contato.setId(Long.valueOf(req.getParameter("id")));
 				}
 				contatos.deletaContato(contato);
-				resp.sendRedirect("contatocontroller.do");
+				resp.sendRedirect("contato.do");
 			}
 		}
 	}
@@ -80,6 +80,6 @@ public class ContatoController extends HttpServlet {
 			contato.setEmail(email);
 			contatos.editaContato(contato);
 		}
-		resp.sendRedirect("contatocontroller.do");
+		resp.sendRedirect("contato.do");
 	}
 }

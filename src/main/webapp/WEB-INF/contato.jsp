@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%Contato contato = (Contato) request.getAttribute("contato"); %>
-	<form action="contatocontroller.do" method="post">
+	<form action="contato.do" method="post">
 		<input type="hidden", name="id" value="<%=contato.getId()%>"/>
 		Nome:<input type="text" name="nome" value="<%=contato.getNome()%>"/>
 		Email:<input type="text" name="email" value="<%=contato.getEmail()%>"/>

@@ -5,6 +5,6 @@
 <title>Desafio JSP</title>
 </head>
 <body>
-	<a href="contatocontroller.do">Contato</a>
+	<a href="contato.do">Contato</a>
 </body>
 </html>
