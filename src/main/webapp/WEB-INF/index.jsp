@@ -1,3 +1,4 @@
+<%@page import="com.br.atomicweb.model.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,14 @@
 <title>Desafio JSP</title>
 </head>
 <body>
-	<a href="contato.do">Contato</a>
+
+<%@ include file="menu.jsp" %> 
+
+	Bem vindo <% Usuario usuario = (Usuario)request.getSession().getAttribute("usuarioAutenticado");
+		out.print(usuario.getNome());
+	%>
+
+	
+	
 </body>
 </html>
